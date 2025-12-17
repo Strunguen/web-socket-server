@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: websocket-test
+    name: mi-app-websocket
     env: node
     plan: free
     buildCommand: "npm install"

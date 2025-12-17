@@ -17,7 +17,7 @@
 
   <script>
     // Cambia la URL por la de tu servicio Render
-    const socket = new WebSocket("https://web-socket-server-8dus.onrender.com");
+    const socket = new WebSocket("wss://" + window.location.host);
 
     const log = document.getElementById("log");
 
