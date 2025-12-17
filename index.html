@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente WebSocket</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #222; color: #eee; text-align: center; }
+    #log { border: 1px solid #555; padding: 10px; margin-top: 20px; height: 200px; overflow-y: auto; background: #111; }
+    input, button { padding: 8px; margin: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Prueba de WebSocket</h1>
+  <input id="msg" type="text" placeholder="Escribe un mensaje..." />
+  <button onclick="sendMessage()">Enviar</button>
+  <div id="log"></div>
+
+  <script>
+    // Cambia la URL por la de tu servicio Render
+    const socket = new WebSocket("https://web-socket-server-8dus.onrender.com");
+
+    const log = document.getElementById("log");
+
+    socket.onopen = () => {
+      log.innerHTML += "<p>✅ Conectado al servidor</p>";
+    };
+
+    socket.onmessage = (event) => {
+      log.innerHTML += "<p>📩 Servidor: " + event.data + "</p>";
+    };
+
+    socket.onclose = () => {
+      log.innerHTML += "<p>❌ Conexión cerrada</p>";
+    };
+
+    socket.onerror = (error) => {
+      log.innerHTML += "<p>⚠️ Error: " + error.message + "</p>";
+    };
+
+    function sendMessage() {
+      const msg = document.getElementById("msg").value;
+      socket.send(msg);
+      log.innerHTML += "<p>➡️ Cliente: " + msg + "</p>";
+    }
+  </script>
+</body>
+</html>
