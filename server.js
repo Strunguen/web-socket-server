@@ -3,6 +3,8 @@ import { WebSocketServer } from "ws";
 
 const app = express();
 
+app.use(express.static("public"));
+
 // Render asigna el puerto en la variable de entorno PORT
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
